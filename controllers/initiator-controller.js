@@ -23,6 +23,12 @@ class InitiatorController{
         res.send(initiator);
     };
 
+    search=async(req,res)=>{
+        const{pinuiBinuy,tama38}=req.query;
+        const initiator = await initiatorDal.search(pinuiBinuy,tama38);
+        res.send(initiator);
+    }
+
     //http://localhost:3600/initiator
     addInitiator=async(req,res)=>{
         const {id,hp,phone,address,tama38,pinuyBinuy,description,logo,name,company_name}=req.body;

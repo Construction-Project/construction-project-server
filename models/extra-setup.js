@@ -14,13 +14,14 @@ const applyExtraSetUp=()=>{
 
     //--
     initiator.hasMany(opinion,{foreignKey:"opinionInitiator",as:"opinion_initiator"})
+    initiator.hasMany(project,{foreignKey:"initiatorId",as:"initiatorProject"})
 
 
     initiator.belongsTo(user,{foreignKey:"id", as:"Initiator"})
     request.belongsTo(user,{foreignKey:"requestId", as:"Request"})
     request_with_initiator.belongsTo(request,{foreignKey:"requestId",as:"Request"})
      //city.hasMany(project,{ foreignKey: {field:"city"}, as: "city"});//,{ foreignKey: "cityProject", as: "city"}
-
+    
 }
 
 // Team.hasMany(Player, {

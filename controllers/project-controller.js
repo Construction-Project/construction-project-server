@@ -23,12 +23,14 @@ class ProjectController{
 
 addProject = async(req,res)=>{
     var {address, city, status, initiatorId, apartmentBefore, apartmentAfter,
-    requestYear,  permitYear, populatingYear, description} =req.body; 
+    requestYear,  permitYear, populatingYear, description,tama38,pinuyBinuy} =req.body; 
     // if(!status)
     //     status=1;
     //var projectData =req.body; 
     //צריך לשלוף את  קוד העיר והסטטוס מהטבלאות שלהם
-    if(!initiatorId ){
+    //    if(!initiatorId ){  שינו י שלא בדקנו
+ 
+    if(!initiatorId || !tama38 && !pinuyBinuy){
         return res.status(400).json({message:"required fields"});
     }
     if(city){
@@ -48,7 +50,7 @@ addProject = async(req,res)=>{
         //console.log(status,city);
     }
     const projectData ={address, city, status, initiatorId, apartmentBefore, apartmentAfter,
-    requestYear,  permitYear, populatingYear, description}
+    requestYear,  permitYear, populatingYear, description,tama38תpinuyBinuy}
     const project=await projectDal.addProject(projectData); 
     if(project){ // Created
         //console.log('Created')
@@ -60,7 +62,7 @@ addProject = async(req,res)=>{
 }
 
 
-
+//  לחשוב אך הפינוי בינוי והתמא יעבוד בעדכון  
 //http://localhost:3600/project/1
 updateProject =async(req,res)=>{
 
@@ -70,7 +72,7 @@ updateProject =async(req,res)=>{
         //צריך לשלוף את  קוד העיר והסטטוס מהטבלאות שלהם
         const projectData ={address, city, status, initiatorId, apartmentBefore, apartmentAfter,
         requestYear,  permitYear, populatingYear, description}
-        if(!initiatorId){
+        if(!initiatorId ){
             return res.status(400).json({message:"required fields"});
         }
 
