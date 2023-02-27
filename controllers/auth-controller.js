@@ -56,13 +56,13 @@ class AuthController{
 
             var foundUser = await AuthDal.getUserByUserName(userName);
                 if (!foundUser || !foundUser.active) {
+                    console.log('here');
                 return res.status(401).json({ message: 'Unauthorized' })
                 }
                 foundUser=foundUser.toJSON();
-                   
             const match = await bcrypt.compare(password, foundUser.password);
             if (!match) 
-                return res.status(401).json({ message: 'Unauthorized' });
+                return res.status(401).json({ message: 'Unauthorized after bcrypt' });
             const userInfo= {id:foundUser.id,name:foundUser.name,role:foundUser.roles, userName:foundUser.userName}
             const accessToken = jwt.sign(userInfo,process.env.ACCESS_TOKEN_SECRET);
             res.json({accessToken:accessToken})

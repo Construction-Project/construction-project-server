@@ -11,20 +11,26 @@ const { sequelize, DataTypes } = require("./sequelize");
 
             
             },
+
             userName: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
+                isEmail: true            // checks for email format (foo@bar.com)
             },
 
             password: {
                 type: DataTypes.STRING,
                 allowNull: false
-            }, 
+            },
+
             name: {
                 type: DataTypes.STRING,
                 allowNull: true
                 //unique:true
             },
+
+            ///כנראה להוריד email
+
             email: {
                 type: DataTypes.STRING,
                 allowNull: true,
