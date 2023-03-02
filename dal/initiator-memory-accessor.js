@@ -19,11 +19,16 @@ class InitiatorDataAccessor {
         {model:Project,as:"initiatorProject",required: false,attributes:[]
       },
 ],
-      attributes:['id',[sequelize.fn('COUNT','initiatorProject.idProject'),'numOfProject']]
+      attributes:['id','hp','phone', 'address','tama38','pinuyBinuy','description','logo','company_name'
+      ,[sequelize.fn('COUNT','initiatorProject.idProject'),'numOfProject']]
       
       })
       return initiators;
     };
+
+
+
+
 //sequelize.col('Initiator.initiatorProject')
 
 

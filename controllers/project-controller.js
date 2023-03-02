@@ -22,6 +22,7 @@ class ProjectController{
 //http://localhost:3600/project
 
 addProject = async(req,res)=>{
+    console.log(req.user)
     var {address, city, status, initiatorId, apartmentBefore, apartmentAfter,
     requestYear,  permitYear, populatingYear, description,tama38,pinuyBinuy} =req.body; 
     // if(!status)

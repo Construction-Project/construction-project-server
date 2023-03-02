@@ -63,7 +63,9 @@ class AuthController{
             const match = await bcrypt.compare(password, foundUser.password);
             if (!match) 
                 return res.status(401).json({ message: 'Unauthorized after bcrypt' });
-            const userInfo= {id:foundUser.id,name:foundUser.name,role:foundUser.roles, userName:foundUser.userName}
+            const userInfo= {id:foundUser.id,name:foundUser.name,role:foundUser.role, userName:foundUser.userName}
+            console.log(userInfo);
+
             const accessToken = jwt.sign(userInfo,process.env.ACCESS_TOKEN_SECRET);
             res.json({accessToken:accessToken})
             // res.send("Logged In")          
