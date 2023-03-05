@@ -15,12 +15,14 @@ class InitiatorDataAccessor {
 
        //
 
-        include:[//{model:Opinion,as:"opinion_initiator",attributes:['stars']},
+        include:[
+        {model:Opinion,as:"opinion_initiator",attributes:[]},
         {model:Project,as:"initiatorProject",required: false,attributes:[]
       },
 ],
       attributes:['id','hp','phone', 'address','tama38','pinuyBinuy','description','logo','company_name'
-      ,[sequelize.fn('COUNT','initiatorProject.idProject'),'numOfProject']]
+      ,[sequelize.fn('COUNT',sequelize.col('initiatorProject.idProject')),'numOfProject']
+      ,[sequelize.fn('AVG',sequelize.col('opinion_initiator.stars')),'rating']]
       
       })
       return initiators;
