@@ -15,12 +15,7 @@ class ProjectDataAccessor {
         })
         return projects;
       }
-
-
-
-
- 
-
+      
       updateProject = async(projectId,projectData)=>{
         console.log(projectData)
         const res=await Porject.update(projectData,{
@@ -37,9 +32,5 @@ class ProjectDataAccessor {
         return res; 
     }
 }
-  
-
-
-
   const projectDataAccessor=new ProjectDataAccessor(); 
   module.exports=projectDataAccessor;

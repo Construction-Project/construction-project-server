@@ -33,7 +33,7 @@ class CityDataAccessor {
             idCity:code
         }
     })
-   }
+   } 
 }
 const cityDataAccessor=new CityDataAccessor(); 
 module.exports=cityDataAccessor;

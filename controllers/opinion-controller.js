@@ -14,7 +14,6 @@ class OpinionController{
         const initiatorId=req.params.initiatorId;
         const opinion=await opinionDal.getOpinionByInitiatorId(initiatorId);
         res.send(opinion)
-
     }
 
     getAverageOpinionsStarsOfAllInitiators=async(req,res)=>{

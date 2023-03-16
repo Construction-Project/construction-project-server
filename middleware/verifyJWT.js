@@ -6,7 +6,11 @@ const verifyJWT = (req, res, next) => {
     if (!authHeader?.startsWith('Bearer ')) {
         return res.status(401).json({ message: 'Unauthorized' })
     }
+    // console.log(req.headers);
+
     const token = authHeader.split(' ')[1];
+    console.log(token);
+
     jwt.verify(
         token,
         process.env.ACCESS_TOKEN_SECRET,
