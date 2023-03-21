@@ -5,22 +5,14 @@ const Request_with_initiator=db.request_with_initiator
 
 class RequestDataAccessor {
 
-    //addRequestDetails = async(userId,name,email,phone,addressProject,comments,date,)=>{
     addRequestDetails = async(requestData)=>{
-        //console.log('ddddd',requestData)
-        var request=await Request.create(requestData);
-        // console.log(typeof(JSON.parse(initiatorsArr)))
-
-       
-
+        const request=await Request.create(requestData);
         return request;
     }
 
 
     addInitiatorsOfrequest=async(initiatorsArr)=>{
-        //console.log(initiatorsArr);
         var requestInitiators=await Request_with_initiator.bulkCreate(initiatorsArr);
-        ///console.log(requestInitiators);
         return requestInitiators
     }
 //promise.all?

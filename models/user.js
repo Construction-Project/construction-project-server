@@ -15,7 +15,9 @@ const { sequelize, DataTypes } = require("./sequelize");
             userName: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                isEmail: true            // checks for email format (foo@bar.com)
+                isEmail: true        
+                //unique:true
+   
             },
 
             password: {
@@ -26,17 +28,17 @@ const { sequelize, DataTypes } = require("./sequelize");
             name: {
                 type: DataTypes.STRING,
                 allowNull: true
-                //unique:true
             },
+
 
             ///כנראה להוריד email
 
-            email: {
+            /*email: {
                 type: DataTypes.STRING,
                 allowNull: true,
-                isEmail: true,            // checks for email format (foo@bar.com)
+                isEmail: true,           
 
-            },
+            },*/
             role:{
                 allowNull:false,
                 type:DataTypes.ENUM('user', 'initiator'),

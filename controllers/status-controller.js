@@ -1,4 +1,5 @@
 
+const { nextTick } = require("process");
 const statusDal = require("../dal/status-memory-accessor");
 
 class StatusController{
@@ -10,15 +11,7 @@ class StatusController{
           }
 
         res.send(status)
-      // return res.status(200).json({data:status});
     };
-
-    // getStatusIdByStatus=async(req,res)=>{
-    //     var status = await statusDal.getStatusIdByStatus()
-    // }
-
-
-
 }
 
 

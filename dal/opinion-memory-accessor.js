@@ -3,12 +3,22 @@ const opinion = require('../models/opinion');
 const Opinion = db.opinion
 
 class OpinionDataAccessor {
-//?
+
     getAllOpinions=async()=>{
         const res=await Opinion.findAll();
         console.log(res);
         return res;
     }
+    
+
+    addOpinion=async(opinionData)=>{
+        const opinion = await Opinion.create(opinionData); 
+        return opinion; 
+    }
+
+
+
+
     
     getOpinionByInitiatorId=async(initiatorId)=>{
         const res=await Opinion.findAll({
@@ -17,7 +27,8 @@ class OpinionDataAccessor {
               }
         })
         return res; 
-    }
+    };
+/*
     getAverageOpinionsStarsOfAllInitiators=async()=>{
         const res= await Opinion.findAll({
             attributes:['opinionInitiator',[db.sequelize.fn("AVG",db.sequelize.col("stars")),'avg']],
@@ -26,7 +37,7 @@ class OpinionDataAccessor {
 
         })
         return res; 
-    }
+    }*/
 
     getOpinionByInitiatorIdAndUserId=async(opinionInitiator,opinionUser)=>{
         const opinion =await Opinion.findOne({
@@ -38,11 +49,6 @@ class OpinionDataAccessor {
         return opinion; 
     }
     
-
-    addOpinion=async(opinionData)=>{
-        const opinion = await Opinion.create(opinionData); 
-        return opinion; 
-    }
 }
 
 

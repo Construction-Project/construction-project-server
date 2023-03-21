@@ -3,7 +3,6 @@ const db = require('../models/index')
 const User = db.user
 
 
-
 class AuthDataAccessor {
 
     login = async (userName) => {
@@ -12,13 +11,13 @@ class AuthDataAccessor {
 
     }
 
-
      register = async (userObject) => {
         const user = await User.create(userObject);
         return user;
     
     }
 
+    //
     getUserByUserName=async(userName)=>{
         const user=await User.findOne({
             where:

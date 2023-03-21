@@ -4,27 +4,29 @@ const bcrypt= require('bcrypt')
 const initiatorDal = require("../dal/initiator-memory-accessor");
 const jwt= require('jsonwebtoken')
 
-
 class AuthController{
 
     register = async (req, res) => {
         const {name, userName, email, password, role } = req.body
-        if ( !userName || !password) {// Confirm data
-            return res.status(400).json({ message: 'All fields are required' })
-            }
-
-        const duplicate=await AuthDal.getUserByUserName(userName); 
-        if(duplicate){
-            return res.status(409).json({message:"Duplicate username"})
-            }
+        //await this.validationUser( userName, password);
+        if ( !userName || !password) {  // Confirm data
+                     return res.status(400).json({ message: 'All fields are required' });
+                     }
         
-        //
+                 const duplicate=await AuthDal.getUserByUserName(userName); 
+                 if(duplicate){
+                     return res.status(409).json({message:"Duplicate username"})
+                     }
+
         const {hp,phone,address,tama38,pinuyBinuy,description,logo,company_name}=req.body;
         if(role=='initiator') {
-            if( !hp || !tama38 || !pinuyBinuy || !name){
-                console.log(`${hp},${tama38},${pinuyBinuy},${name}`)
-                return res.status(400).json({message:"required fields for initiator"});
-            };
+            //await this.checkInitiatorRequierdFeilds(hp,tama38,pinuyBinuy,name);
+            
+             if( !hp || !tama38 || !pinuyBinuy || !name){
+            //console.log(`${hp},${tama38},${pinuyBinuy},${name}`)
+            return res.status(400).json({message:"required fields for initiator"});
+        };
+            
             }  
             
         const hashedPwd = await bcrypt.hash(password, 10);    
@@ -67,9 +69,7 @@ class AuthController{
             console.log(userInfo);
 
             const accessToken = jwt.sign(userInfo,process.env.ACCESS_TOKEN_SECRET);
-            res.json({accessToken:accessToken})
-            // res.send("Logged In")          
-    //await AuthDal.login();
+            res.json({user:{ username:foundUser.username, id:foundUser.id, name:foundUser.name },accessToken:accessToken})
 
     }
 }
@@ -78,6 +78,3 @@ module.exports = authController;
 
 
 
-
-
-//למחוק את השדה name מהיזם

@@ -5,34 +5,34 @@ const City = db.city
 class CityDataAccessor {
 
     getAllCities=async()=>{
-        const values=await City.findAll({
+        const cities=await City.findAll({
             attributes:['city'],
             order: [["city"]],
 
         }); 
 
-        return values;
+        return cities;
     }
 
     getCodeByName = async (name)=>{
 
-           // var idCol=`${tableName}Id`
-            const res = await City.findOne({
+            const city = await City.findOne({
           attributes:['idCity'],
             where:{
                 city:name
             }
         })
-        return res;
+        return city;
        };
 
        getNameByCode = async (code)=>{
-        const res = await City.findOne({
+        const codeCity = await City.findOne({
         attributes:['city'],
         where:{
             idCity:code
         }
     })
+    return codeCity; 
    } 
 }
 const cityDataAccessor=new CityDataAccessor(); 

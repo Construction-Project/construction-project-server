@@ -6,7 +6,6 @@ const verifyJWT = (req, res, next) => {
     if (!authHeader?.startsWith('Bearer ')) {
         return res.status(401).json({ message: 'Unauthorized' })
     }
-    // console.log(req.headers);
 
     const token = authHeader.split(' ')[1];
     console.log(token);
@@ -17,7 +16,7 @@ const verifyJWT = (req, res, next) => {
         (err, decoded) => {
             if (err) return res.status(403).json({ message: 'Forbidden' })
             req.user = decoded
-            next()
+            next();
         }
     )
 

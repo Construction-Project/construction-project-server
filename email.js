@@ -1,10 +1,9 @@
 
-var nodemailer = require('nodemailer');
-
+const nodemailer = require('nodemailer');
 // https://support.google.com/mail/answer/185833?hl=iw
 
 
-var transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   service: 'outlook',
   auth: {
     user:  process.env.USER_MAIL,

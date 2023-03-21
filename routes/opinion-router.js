@@ -10,8 +10,8 @@ opinionRouter.route("/")
 opinionRouter.route("/:initiatorId")
     .get(opinionController.getOpinionByInitiatorId)
 
-opinionRouter.route("/star")
-    .get(opinionController.getAverageOpinionsStarsOfAllInitiators)
+//opinionRouter.route("/star")
+//    .get(opinionController.getAverageOpinionsStarsOfAllInitiators)
 
 
 module.exports = opinionRouter;

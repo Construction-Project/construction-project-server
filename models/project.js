@@ -55,15 +55,15 @@ const { sequelize, DataTypes } = require("./sequelize");
                 type: DataTypes.STRING,
                 allowNull: true
             },
-            // tama38: {
-            //     type: DataTypes.BOOLEAN,
-            //     allowNull: false,
-            // },
-            // pinuyBinuy: {
-            //     type: DataTypes.BOOLEAN,
-            //     allowNull: false,
+             tama38: {
+                 type: DataTypes.BOOLEAN,
+                 allowNull: false,
+             },
+             pinuyBinuy: {
+                 type: DataTypes.BOOLEAN,
+                 allowNull: false,
 
-            // },
+         }
            
         },
         {           

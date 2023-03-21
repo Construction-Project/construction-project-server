@@ -1,5 +1,4 @@
 
-
 module.exports = {
     HOST: process.env.DATABASE_HOST,
     USER: process.env.DATABASE_USER,

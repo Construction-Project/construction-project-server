@@ -6,21 +6,22 @@ const Picture = db.picture
 
 class PictureDataAccessor {
 
-    getPicturesByProjectId=async(id)=>{
+    getPicturesByProjectId = async (id) => {
 
-        const pictures= Picture.findAll({
-            where:{projectId:id}
-        }); 
+        const pictures = Picture.findAll({
+            where: { projectId: id }
+        });
 
         return pictures;
     }
 
-
-
+    addProjectPictures = async (projectId, picturePath) => {
+        console.log('addProjectPictures');
+        const picture = await Picture.create({projectId, picturePath}  );
+        return picture
+    };
 }
 
-
-
-const pictureDataAccessor=new PictureDataAccessor(); 
-module.exports=pictureDataAccessor;
+const pictureDataAccessor = new PictureDataAccessor();
+module.exports = pictureDataAccessor;
 

@@ -12,9 +12,6 @@ class InitiatorDataAccessor {
     getAllInitiators = async ()=>{
       const initiators=await Initiator.findAll({      
         group: ['Initiator.id'] ,
-
-       //
-
         include:[
         {model:Opinion,as:"opinion_initiator",attributes:[]},
         {model:Project,as:"initiatorProject",required: false,attributes:[]
@@ -28,47 +25,15 @@ class InitiatorDataAccessor {
       return initiators;
     };
 
-
-
-
-//sequelize.col('Initiator.initiatorProject')
-
-
-    // await PostModel.findAll({
-    //   group: ['posts.id'],
-    //   order: [['createdAt', 'DESC']],
-    //   include: [
-    //     {
-    //       model: CategoryModel,
-    //       attributes: ['title'],
-    //       where: { title: categoryTitle }
-    //     },
-    //     { model: CommentModel },
-    //     { model: UserModel, attributes: ['fullname', 'id'] }
-    //   ],
-    //   attributes: [
-    //     'title', 'content', 'description', 'thumbnail', 'baner', 'createdAt', 'updatedAt',
-    //     [Sequelize.fn('COUNT', 'comment.id'), 'commentsCounter']
-    //   ]
-    // });
-    //,group:'opinionInitiator'
-//,attributes:[[db.sequelize.fn("AVG",db.sequelize.col("stars")),'avg']],raw: true
-
-  //   attributes:['opinionInitiator',[db.sequelize.fn("AVG",db.sequelize.col("stars")),'avg']],
-  //   
-
-  // })
-
     
 
     getInitiatorById = async (id)=>{
-      // console.log(id)
-      const res=await Initiator.findOne({
+      const initiator=await Initiator.findOne({
         where:{
           id:id        
         }
       })
-      return res;
+      return initiator;
     }
 
     getInitiatorsEmailById = async (idArr)=>{
@@ -80,9 +45,6 @@ class InitiatorDataAccessor {
           }          
         }
       })
-      //console.log(`res`)
-
-      //console.log("in dal",res)
       return json(res);
     }
     search = async(pinuiBinuy,tama38)=>{
@@ -111,7 +73,6 @@ class InitiatorDataAccessor {
     }
 
 
-    ///מה להחזיר?
     updateInitiator=async(initiatorId,initiatorData)=>{
       const initiator=await Initiator.update(initiatorData,{
         where:{id:initiatorId}})
@@ -124,3 +85,38 @@ class InitiatorDataAccessor {
   module.exports=initiatorDataAccessor;
 
   
+
+
+
+
+
+
+
+
+
+  
+
+      // await PostModel.findAll({
+    //   group: ['posts.id'],
+    //   order: [['createdAt', 'DESC']],
+    //   include: [
+    //     {
+    //       model: CategoryModel,
+    //       attributes: ['title'],
+    //       where: { title: categoryTitle }
+    //     },
+    //     { model: CommentModel },
+    //     { model: UserModel, attributes: ['fullname', 'id'] }
+    //   ],
+    //   attributes: [
+    //     'title', 'content', 'description', 'thumbnail', 'baner', 'createdAt', 'updatedAt',
+    //     [Sequelize.fn('COUNT', 'comment.id'), 'commentsCounter']
+    //   ]
+    // });
+    //,group:'opinionInitiator'
+//,attributes:[[db.sequelize.fn("AVG",db.sequelize.col("stars")),'avg']],raw: true
+
+  //   attributes:['opinionInitiator',[db.sequelize.fn("AVG",db.sequelize.col("stars")),'avg']],
+  //   
+
+  // })

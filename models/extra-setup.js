@@ -6,7 +6,8 @@ const applyExtraSetUp=()=>{
     project.belongsTo(city,{ foreignKey: "city", as: "City"}); 
     project.belongsTo(status,{foreignKey:"status",as:"Status"});
     project.belongsTo(initiator,{foreignKey:"initiatorId",as:"projectInitiator"});
-    picture.belongsTo(project,{foreignKey: "projectId", as:"Project"});
+    picture.belongsTo(project,{foreignKey: "projectId", as:"Project_pictures"});
+    project.hasMany(picture,{foreignKey: "projectId", as:"Project_pictures"})
 
     opinion.belongsTo(user,{foreignKey:"opinionUser",as:"user"})
     opinion.belongsTo(initiator,{foreignKey:"opinionInitiator",as:"opinion_initiator"})

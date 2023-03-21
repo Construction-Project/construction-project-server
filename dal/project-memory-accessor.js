@@ -3,6 +3,7 @@ const db = require('../models/index');
 const Porject = db.project;
 const City=db.city;
 const Status=db.status; 
+const Picture=db.picture
 
 class ProjectDataAccessor {
     getProjectsByInitiatorId = async (initiatorId)=>{
@@ -11,7 +12,10 @@ class ProjectDataAccessor {
             initiatorId//:initiatorId        
           },
           include:[{model:City,as:"City", attributes:['city']}
-        ,{model:Status,as:"Status", attributes:['status']}]
+        ,{model:Status,as:"Status", attributes:['status']}
+        ,{model:Picture,as:"Project_pictures", attributes:['picturePath']} //?
+      
+      ]
         })
         return projects;
       }
