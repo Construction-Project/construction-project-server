@@ -15,9 +15,10 @@ class PictureDataAccessor {
         return pictures;
     }
 
-    addProjectPictures = async (projectId, picturePath) => {
+    addProjectPictures = async (picturesArrWithProjectId) => {
         console.log('addProjectPictures');
-        const picture = await Picture.create({projectId, picturePath}  );
+
+        const picture = await Picture.bulkCreate(picturesArrWithProjectId);
         return picture
     };
 }

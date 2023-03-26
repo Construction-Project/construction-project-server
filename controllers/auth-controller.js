@@ -50,6 +50,7 @@ class AuthController{
         return res.status(201).json({ message: `New  ${role||'user'} created` })
     }
     login = async (req, res) => {
+        console.log('here login')
         const { userName, password } = req.body
         if (!userName || !password) {
             return res.status(400).json({ message: 'All fields are required'
@@ -65,11 +66,13 @@ class AuthController{
             const match = await bcrypt.compare(password, foundUser.password);
             if (!match) 
                 return res.status(401).json({ message: 'Unauthorized after bcrypt' });
-            const userInfo= {id:foundUser.id,name:foundUser.name,role:foundUser.role, userName:foundUser.userName}
+            const userInfo= {id:foundUser.Id,name:foundUser.name,role:foundUser.role, userName:foundUser.userName}
             console.log(userInfo);
 
             const accessToken = jwt.sign(userInfo,process.env.ACCESS_TOKEN_SECRET);
-            res.json({user:{ username:foundUser.username, id:foundUser.id, name:foundUser.name },accessToken:accessToken})
+            const userToResponse={ username:foundUser.username, id:foundUser.Id, name:foundUser.name, role:foundUser.role}
+            console.log(userToResponse);
+            res.json({user:userToResponse,accessToken:accessToken})
 
     }
 }
