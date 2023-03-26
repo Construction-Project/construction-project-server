@@ -33,7 +33,7 @@ class ProjectController {
     addProject = async (req, res) => {
 
         var { address, city, status, initiatorId, apartmentBefore, apartmentAfter,
-            requestYear, permitYear, populatingYear, description, tama38, pinuyBinuy, picture } = req.body;
+            requestYear, permitYear, populatingYear, description, tama38, pinuyBinuy, picturesArr } = req.body;
             console.log(req.body , "req.body");
         // if(!status)
         //     status=1;
@@ -60,13 +60,15 @@ class ProjectController {
         }
         const projectData = {
             address, city, status, initiatorId, apartmentBefore, apartmentAfter,
-            requestYear, permitYear, populatingYear, description, tama38, pinuyBinuy, picture
+            requestYear, permitYear, populatingYear, description, tama38, pinuyBinuy, picturesArr
         }
         const project = await projectDal.addProject(projectData);
         if (project) { // Created
             console.log('Created')
-            const projectId = project.toJSON().id;
-            const pictures = await pictureDal.addProjectPictures(projectId, picture);
+            const projectId = project.toJSON().idProject;
+            console.log({projectId});
+            const picturesArrWithProjectId=picturesArr.map((pic)=>{return{'projectId':projectId,'picturePath':pic}});
+            const pictures = await pictureDal.addProjectPictures(picturesArrWithProjectId);
             if (!pictures)
                 return res.status(400).json({ message: 'Invalid pictures data received' });
 
