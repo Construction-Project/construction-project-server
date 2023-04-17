@@ -9,7 +9,7 @@ class InitiatorController {
             if (!initiators?.length) {
                 return res.status(204).json({ message: 'No initiators found' })
             }
-            initiators.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+            // initiators.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
 
             res.send(initiators)
         };

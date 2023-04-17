@@ -12,15 +12,18 @@ class InitiatorDataAccessor {
     getAllInitiators = async ()=>{
       const initiators=await Initiator.findAll({      
         group: ['Initiator.id'] ,
-        include:[
+        include:
+        [
         {model:Opinion,as:"opinion_initiator",attributes:[]},
-        {model:Project,as:"initiatorProject",required: false,attributes:[]
-      },
+        {model:Project,as:"initiatorProject",required: false,attributes:[]},
+        {model:User,as:'initiator_user',attributes:[]},
+
 ],
-      attributes:['id','hp','phone', 'address','tama38','pinuyBinuy','description','logo','company_name'
+      attributes:['id','hp','phone', 'address','tama38','pinuyBinuy','description','logo','company_name',
+      [sequelize.col('initiator_user.name'), 'name']
       ,[sequelize.fn('COUNT',sequelize.col('initiatorProject.idProject')),'numOfProject']
       ,[sequelize.fn('AVG',sequelize.col('opinion_initiator.stars')),'rating']]
-      
+,order:['name']
       })
       return initiators;
     };

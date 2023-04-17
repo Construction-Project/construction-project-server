@@ -29,6 +29,7 @@ app.use("/opinion", require("./routes/opinion-router"));
 app.use("/city", require("./routes/city-router"));
 app.use("/status", require("./routes/status-router"));
 app.use("/upload", require("./routes/upload-router"));
+app.use("/map/autoComplete", require("./routes/map-router"));
 
 //myMiddelwares
 app.all('*',notFound404);
