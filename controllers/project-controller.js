@@ -82,6 +82,7 @@ class ProjectController {
             address, city, status, initiatorId, apartmentBefore, apartmentAfter,
             requestYear, permitYear, populatingYear, description, tama38, pinuyBinuy, picturesArr
         }
+
         const project = await projectDal.addProject(projectData);
         if (project) { // Created
             console.log('Created')
@@ -113,10 +114,7 @@ class ProjectController {
 */
         //var projectData =req.body; 
         //צריך לשלוף את  קוד העיר והסטטוס מהטבלאות שלהם
-        const projectData = {
-            address, city, status, initiatorId, apartmentBefore, apartmentAfter,
-            requestYear, permitYear, populatingYear, description
-        }
+
         if (!initiatorId) {
             return res.status(400).json({ message: "required fields" });
         }
@@ -129,6 +127,7 @@ class ProjectController {
                 return res.status(400).json({ message: 'Invalid project data received' });
             city = cityName.toJSON().idCity;
         }
+        console.log({city})
 
         if (status) {
             //status =await codeTableDal.getCodeByName('status',status);//statusCode
@@ -139,11 +138,18 @@ class ProjectController {
             }
             status = status.toJSON().statusId;
         }
+        console.log({status})
 
 
 
 
-
+        const projectData = {
+            address, city, status, initiatorId, apartmentBefore, apartmentAfter,
+            requestYear, permitYear, populatingYear, description
+        }
+        //projectData.city=city;
+        //projectData.status=status;
+        console.log({projectData});
         const id = req.params.projectId;
         const project = await projectDal.updateProject(id, projectData);
         if (project) { // Updated
