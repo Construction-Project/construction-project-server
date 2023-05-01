@@ -123,12 +123,13 @@ class ProjectController {
 
         if (city) {
             //cityName = await codeTableDal.getCodeByName('city',city); //cityCode
-            cityName = await cityDal.getCodeByName(city);
-
+            const cityName = await cityDal.getCodeByName(city);
+            console.log({cityName})
             if (!cityName)
                 return res.status(400).json({ message: 'Invalid project data received' });
             city = cityName.toJSON().idCity;
         }
+
         if (status) {
             //status =await codeTableDal.getCodeByName('status',status);//statusCode
             status = await statusDal.getCodeByName(status);

@@ -16,7 +16,7 @@ class CityDataAccessor {
 
     getCodeByName = async (name)=>{
 
-            const city = await City.findOne({
+        const city = await City.findOne({
           attributes:['idCity'],
             where:{
                 city:name

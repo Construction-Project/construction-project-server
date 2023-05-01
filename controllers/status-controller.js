@@ -9,7 +9,6 @@ class StatusController{
         if(!status?.length){
             return res.status(400).json({ message: 'No status found' })
           }
-
         res.send(status)
     };
 }
