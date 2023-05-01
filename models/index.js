@@ -17,9 +17,9 @@ db.opinion=require('./opinion')
 db.user=require('./user')
 
 applyExtraSetUp();
-// alter: true 
-db.sequelize.sync({ force: false })
-//db.sequelize.sync({  alter: true })
+// alter: true  
+//db.sequelize.sync({ force: true })
+db.sequelize.sync({  alter: true })
 
 .then(() => {
 console.log('yes re-sync done!')

@@ -6,6 +6,7 @@ const Request_with_initiator=db.request_with_initiator
 class RequestDataAccessor {
 
     addRequestDetails = async(requestData)=>{
+        console.log(requestData);
         const request=await Request.create(requestData);
         return request;
     }

@@ -40,16 +40,19 @@ class InitiatorDataAccessor {
     }
 
     getInitiatorsEmailById = async (idArr)=>{
+      console.log({idArr});
       const res= await User.findAll({
-        attributes:['email'],
+        attributes:['userName'],
         where:{
           id: {
             [Op.or]: idArr
           }          
         }
       })
+      console.log(`kk`,json(res));
       return json(res);
     }
+
     search = async(pinuiBinuy,tama38)=>{
       const initiators=await Initiator.findAll({
         where:{

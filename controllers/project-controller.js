@@ -15,7 +15,7 @@ class ProjectController {
             const id = req.params.initiatorId
             var projects = await projectDal.getProjectsByInitiatorId(id);
             if (!projects?.length) {
-                return res.status(400).json({ message: 'No projects (of initiator) found' })
+                return res.status(204).json({ message: 'No projects (of initiator) found' })
             }
             projects.sort((a, b) => (a.city - b.city || a.address.localeCompare(b.address)));
             res.send(projects)
@@ -134,12 +134,6 @@ class ProjectController {
         //res.send(project)
 
     }
-
-
-
-
-
-
 }
 
 const projectController = new ProjectController();

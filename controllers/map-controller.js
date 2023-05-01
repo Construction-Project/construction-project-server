@@ -18,6 +18,7 @@ const geocode = async (address) => {
 
 const geocodeAddress = async (req, res) => {
   const { address } = req.body;
+  console.log(address,"aaddrreessss");
   if (!address) {
     return res.status(400).json({ message: 'Address is required' })
   }

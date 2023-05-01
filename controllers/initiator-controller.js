@@ -29,12 +29,12 @@ class InitiatorController {
  
     };
 
-    search = async (req, res) => {
+    // search = async (req, res) => {
 
-            const { pinuiBinuy, tama38 } = req.query;
-            const initiator = await initiatorDal.search(pinuiBinuy, tama38);
-            res.send(initiator);
-        }
+    //         const { pinuiBinuy, tama38 } = req.query;
+    //         const initiator = await initiatorDal.search(pinuiBinuy, tama38);
+    //         res.send(initiator);
+    //     }
 
     
 

@@ -36,7 +36,7 @@ const { sequelize, DataTypes } = require("./sequelize");
             },
             date: {
                 type: DataTypes.DATE,
-                allowNull: false
+                allowNull: true
             },
 
           

@@ -1,10 +1,15 @@
 const express = require("express");
 const mapRouter=express.Router();
-const {placeAutocomplete} = require("../controllers/map-controller");
+const {placeAutocomplete,geocodeAddress} = require("../controllers/map-controller");
 
-mapRouter.route("/")
+mapRouter.route("/autoComplete")
     .post(placeAutocomplete)
 
+mapRouter.route("/address")
+    .post(geocodeAddress)
+
+
+    
 module.exports = mapRouter;
 
 

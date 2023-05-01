@@ -1,4 +1,5 @@
 
+const { log } = require('console');
 const nodemailer = require('nodemailer');
 // https://support.google.com/mail/answer/185833?hl=iw
 
@@ -25,6 +26,9 @@ var sendEmail=(requestId,initiatorsEmails,name,email,phone,addressProject,commen
   mailOptions.subject=`A new request #${requestId} from ${name}`
   mailOptions.text=content;
   mailOptions.to=initiatorsEmails.toString();
+  console.log({initiatorsEmails});
+  console.log(mailOptions.to,"tttttttttttttt");
+  console.log({mailOptions})
   transporter.sendMail(mailOptions, function(error, info){
   if (error) {
     console.log(error);

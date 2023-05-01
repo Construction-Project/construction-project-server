@@ -18,7 +18,7 @@ const applyExtraSetUp=()=>{
     initiator.hasMany(project,{foreignKey:"initiatorId",as:"initiatorProject"})
 
     initiator.belongsTo(user,{foreignKey:"id", as:"initiator_user"})
-    request.belongsTo(user,{foreignKey:"requestId", as:"Request"})
+    request.belongsTo(user,{foreignKey:"userId", as:"Request"})
     request_with_initiator.belongsTo(request,{foreignKey:"requestId",as:"Request"})
      //city.hasMany(project,{ foreignKey: {field:"city"}, as: "city"});//,{ foreignKey: "cityProject", as: "city"}
     
