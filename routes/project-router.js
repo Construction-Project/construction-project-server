@@ -6,10 +6,14 @@ const verifyJWT=require('../middleware/verifyJWT')
 
 projectRouter.route('/')
     .post([verifyJWT,veriryInitiator],projectController.addProject)
+
+projectRouter.route('/:projectId')
+    .get(projectController.getProjectById)
     
 
-projectRouter.route('/:initiatorId')
+projectRouter.route('/')
     .get(projectController.getProjectsByInitiatorId)
+
 
 projectRouter.route('/:projectId')
     .put([verifyJWT,veriryInitiator],projectController.updateProject)

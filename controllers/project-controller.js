@@ -5,14 +5,32 @@ const cityDal = require("../dal/city-memory-accessor");
 const statusDal = require("../dal/status-memory-accessor");
 const pictureDal = require("../dal/picture-memory-accessor");
 
-
 //=require("../dal/status-memory-accessor");
 
 class ProjectController {
+
+
+    getProjectById=async(req, res, next)=>{
+        try {
+            const projectId = req.params.projectId
+            var project = await projectDal.getProjectById(projectId);
+            if (!project?.length) {
+                return res.status(204).json({ message: 'project didn"t found' })
+            }
+            res.send(project)
+        }
+
+
+        catch (error) {
+            next(error)
+        }
+
+    }
+
     // http://localhost:3600/project/1
     getProjectsByInitiatorId = async (req, res, next) => {
         try {
-            const id = req.params.initiatorId
+            const id = req.query.initiatorId
             var projects = await projectDal.getProjectsByInitiatorId(id);
             if (!projects?.length) {
                 return res.status(204).json({ message: 'No projects (of initiator) found' })

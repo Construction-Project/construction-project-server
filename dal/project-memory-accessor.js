@@ -6,6 +6,16 @@ const Status=db.status;
 const Picture=db.picture
 
 class ProjectDataAccessor {
+
+  getProjectById = async (idProject)=>{
+    const project= await Porject.findOne({
+      where:{
+        idProject        
+      }
+    })
+    return project;
+  }
+
     getProjectsByInitiatorId = async (initiatorId)=>{
         const projects= await Porject.findAll({
           where:{
