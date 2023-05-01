@@ -12,11 +12,13 @@ class ProjectController {
 
     getProjectById=async(req, res, next)=>{
         try {
-            const projectId = req.params.projectId
+            const projectId = parseInt(req.params.projectId)
+            console.log({projectId});
             var project = await projectDal.getProjectById(projectId);
-            if (!project?.length) {
+            if (!project) {
                 return res.status(204).json({ message: 'project didn"t found' })
             }
+
             res.send(project)
         }
 
