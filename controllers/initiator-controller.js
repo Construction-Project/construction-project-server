@@ -73,9 +73,10 @@ class InitiatorController {
      
             const { hp, phone, address, tama38, pinuyBinuy, description, logo, name, company_name } = req.body;
             const id = req.params.id;
-            if (!id || !hp || !tama38 || !pinuyBinuy || !name) {
-                return res.status(400).json({ message: "required fields" });
-            }
+            // if (!id || !hp || !tama38 || !pinuyBinuy || !name) {
+            //     return res.status(400).json({ message: "required fields" });
+            // }
+            console.log(address);
             const initiatorData = { hp, phone, address, tama38, pinuyBinuy, description, logo, name, company_name };
             const initiator = await initiatorDal.updateInitiator(id, initiatorData);
             if (initiator) { // Updated
