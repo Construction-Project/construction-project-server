@@ -30,7 +30,7 @@ class AuthController{
             }  
             
         const hashedPwd = await bcrypt.hash(password, 10);    
-        const userObject = {name,email,userName,password:hashedPwd}        
+        const userObject = {name,email,userName,password:hashedPwd,role}        
         const user=await AuthDal.register(userObject);
             if(!user)
                 return res.status(400).json({ message: 'Invalid user data'});
