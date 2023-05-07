@@ -6,7 +6,7 @@ class CityDataAccessor {
 
     getAllCities=async()=>{
         const cities=await City.findAll({
-            attributes:['city'],
+            attributes:['idCity','city'],
             order: [["city"]],
 
         }); 

@@ -65,6 +65,7 @@ class ProjectController {
         if (city) {
             //cityName = await codeTableDal.getCodeByName(db.city,city); //cityCode
             var cityName = await cityDal.getCodeByName(city);
+            console.log(cityName);
             if (!cityName)
                 return res.status(400).json({ message: 'Invalid project data received' });
             city = cityName.toJSON().idCity;
@@ -119,14 +120,14 @@ class ProjectController {
             return res.status(400).json({ message: "required fields" });
         }
 
-        if (city) {
-            //cityName = await codeTableDal.getCodeByName('city',city); //cityCode
-            const cityName = await cityDal.getCodeByName(city);
-            console.log({cityName})
-            if (!cityName)
-                return res.status(400).json({ message: 'Invalid project data received' });
-            city = cityName.toJSON().idCity;
-        }
+        // if (city) {
+        //     //cityName = await codeTableDal.getCodeByName('city',city); //cityCode
+        //     const cityName = await cityDal.getCodeByName(city);
+        //     console.log({cityName})
+        //     if (!cityName)
+        //         return res.status(400).json({ message: 'Invalid project data received' });
+        //     city = cityName.toJSON().idCity;
+        // }
         console.log({city})
 
         if (status) {
@@ -140,7 +141,7 @@ class ProjectController {
         }
         console.log({status})
 
-
+        status = 1
 
 
         const projectData = {
