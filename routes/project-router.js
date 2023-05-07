@@ -18,4 +18,9 @@ projectRouter.route('/')
 projectRouter.route('/:projectId')
     .put([verifyJWT,veriryInitiator],projectController.updateProject)
 
+
+projectRouter.route('/:projectId')
+    .delete([verifyJWT,veriryInitiator],projectController.deleteProject)
+
+
 module.exports = projectRouter;

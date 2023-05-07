@@ -82,7 +82,7 @@ class ProjectController {
             address, city, status, initiatorId, apartmentBefore, apartmentAfter,
             requestYear, permitYear, populatingYear, description, tama38, pinuyBinuy, picturesArr
         }
-
+            console.log({projectData});
         const project = await projectDal.addProject(projectData);
         if (project) { // Created
             console.log('Created')
@@ -161,6 +161,16 @@ class ProjectController {
         //res.send(project)
 
     }
+
+    
+    deleteProject = async (req, res) => {
+     
+        const projectId = req.params.projectId;
+        await projectDal.deleteProject(projectId);
+        res.json(`project with ID ${projectId} deleted`);
+    
+ 
+}
 }
 
 const projectController = new ProjectController();
