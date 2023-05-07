@@ -8,7 +8,7 @@ class StatusDataAccessor {
 
   getAllStatuses=async()=>{
     const values=await Status.findAll({
-      attributes:['status']
+      attributes:['statusId','status']
   }); 
 
   return values;
