@@ -15,14 +15,15 @@ class AuthController{
         
                  const duplicate=await AuthDal.getUserByUserName(userName); 
                  if(duplicate){
-                     return res.status(409).json({message:"Duplicate username"})
+                     return res.status(409).json({message:"Duplicate userName"})
                      }
-
+        console.log('bf')
         const {hp,phone,address,tama38,pinuyBinuy,description,logo,company_name}=req.body;
         if(role=='initiator') {
             //await this.checkInitiatorRequierdFeilds(hp,tama38,pinuyBinuy,name);
             
-             if( !hp || !tama38 || !pinuyBinuy || !name){
+             if( !hp || !tama38 && !pinuyBinuy || !name){
+                console.log({name})
             //console.log(`${hp},${tama38},${pinuyBinuy},${name}`)
             return res.status(400).json({message:"required fields for initiator"});
         };
@@ -67,7 +68,7 @@ class AuthController{
             if (!match) 
                 return res.status(401).json({ message: 'Unauthorized after bcrypt' });
             const userInfo= {id:foundUser.Id,name:foundUser.name,role:foundUser.role, userName:foundUser.userName}
-            console.log(userInfo);
+            console.log({userInfo});
 
             const accessToken = jwt.sign(userInfo,process.env.ACCESS_TOKEN_SECRET);
             const userToResponse={ username:foundUser.username, id:foundUser.Id, name:foundUser.name, role:foundUser.role}

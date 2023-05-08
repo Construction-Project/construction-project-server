@@ -50,6 +50,15 @@ class ProjectDataAccessor {
         const res=await Porject.create(projectData);
         return res; 
     }
+
+
+    deleteProject=async(projectId)=>{
+      await Porject.destroy({
+        where:{
+          idProject:projectId
+        }
+      })
+    }
 }
   const projectDataAccessor=new ProjectDataAccessor(); 
   module.exports=projectDataAccessor;
