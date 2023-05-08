@@ -37,7 +37,7 @@ class ProjectController {
             if (!projects?.length) {
                 return res.status(204).json({ message: 'No projects (of initiator) found' })
             }
-            projects.sort((a, b) => (a.city - b.city || a.address.localeCompare(b.address)));
+            projects.sort((a, b) => (a.city - b.city || a.address?.localeCompare(b.address)));
             res.send(projects)
         }
 
