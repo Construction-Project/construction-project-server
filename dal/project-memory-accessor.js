@@ -11,7 +11,11 @@ class ProjectDataAccessor {
     const project= await Porject.findOne({
       where:{
         idProject        
-      }
+      },
+      include:[{model:City,as:"City", attributes:['city']}
+        ,{model:Status,as:"Status", attributes:['status']}
+
+        ,{model:Picture,as:"Project_pictures", attributes:['picturePath']}]
     })
     return project;
   }
@@ -23,9 +27,10 @@ class ProjectDataAccessor {
           },
           include:[{model:City,as:"City", attributes:['city']}
         ,{model:Status,as:"Status", attributes:['status']}
+
         ,{model:Picture,as:"Project_pictures", attributes:['picturePath']} //?
       
-      ]
+      ],
         })
         return projects;
       }

@@ -130,18 +130,18 @@ class ProjectController {
         // }
         console.log({city})
 
-        if (status) {
-            //status =await codeTableDal.getCodeByName('status',status);//statusCode
-            status = await statusDal.getCodeByName(status);
+        // if (status) {
+        //     //status =await codeTableDal.getCodeByName('status',status);//statusCode
+        //     status = await statusDal.getCodeByName(status);
 
-            if (!status) {
-                return res.status(400).json({ message: 'Invalid project data received' });
-            }
-            status = status.toJSON().statusId;
-        }
-        console.log({status})
+        //     if (!status) {
+        //         return res.status(400).json({ message: 'Invalid project data received' });
+        //     }
+        //     status = status.toJSON().statusId;
+        // }
+         console.log({status})
 
-        status = 1
+        // status = 1
 
 
         const projectData = {
