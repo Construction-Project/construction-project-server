@@ -4,8 +4,8 @@ const cityDal = require("../dal/city-memory-accessor");
 
 class CityController{
     //http://localhost:3600/city   
-     getAllCities=async(req,res)=>{
-    
+     getAllCities=async(req,res,next)=>{
+        try{
         const cities=await cityDal.getAllCities() ;
         // //"https://data.gov.il/api/3/action/datastore_search"
         // const cities_from_api=await fetch("https://data.gov.il/api/3/action/datastore_search?resource_id=d4901968-dad3-4845-a9b0-a57d027f11ab&limit=5")
@@ -17,7 +17,9 @@ class CityController{
             return res.status(400).json({ message: 'No cities found' })
           }
         res.send(cities);
-   
+   }
+   catch(error) {next(error)}
+
     }
 }
 const cityController = new CityController();

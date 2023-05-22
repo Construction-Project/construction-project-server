@@ -6,7 +6,8 @@ const initiatorDal=require("../dal/initiator-memory-accessor");
 const { log } = require("console");
 
 class RequestController{
-    addrequest = async(req,res)=>{
+    addrequest = async(req,res,next)=>{
+      try{
       const {userId,name,email,phone,addressProject,comments,initiatorsArr}=req.body;
         const date=new Date();
         const request= await requestDal.addRequestDetails({userId,name,email,phone,addressProject,comments,date});
@@ -18,6 +19,8 @@ class RequestController{
         sendEmailToInitiators(requestId,initiatorsArr,name,email,phone,addressProject,comments);
         res.send(requestInitiators); 
       }
+      catch(error) {next(error)}
+    }
     }
 
 

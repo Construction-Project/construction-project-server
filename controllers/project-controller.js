@@ -42,16 +42,15 @@ class ProjectController {
         }
 
 
-        catch (error) {
-            next(error)
-        }
+        catch (error) {next(error)}
+            
 
     }
 
     //http://localhost:3600/project
 
-    addProject = async (req, res) => {
-
+    addProject = async (req, res ,next) => {
+        try{
         var { address, city, status, initiatorId, apartmentBefore, apartmentAfter,
             requestYear, permitYear, populatingYear, description, tama38, pinuyBinuy, picturesArr } = req.body;
             console.log(req.body , "req.body");
@@ -59,26 +58,26 @@ class ProjectController {
         //     status=1;
         //    if(!initiatorId ){  שינו י שלא בדקנו
 
-        if (!initiatorId || !tama38 && !pinuyBinuy) {
+        if (!initiatorId || !tama38 && !pinuyBinuy || !city || !status) {
             return res.status(400).json({ message: "required fields" });
         }
-        if (city) {
-            //cityName = await codeTableDal.getCodeByName(db.city,city); //cityCode
-            var cityName = await cityDal.getCodeByName(city);
-            console.log(cityName);
-            if (!cityName)
-                return res.status(400).json({ message: 'Invalid project data received' });
-            city = cityName.toJSON().idCity;
-        }
-        //status =await codeTableDal.getCodeByName('Status',db.status);//statusCode
-        if (status) {
-            status = await statusDal.getCodeByName(status);
-            if (!status) {
-                return res.status(400).json({ message: 'Invalid project data received ' });
-            }
-            status = status.toJSON().statusId;
-            //console.log(status,city);
-        }
+        // if (city) {
+        //     //cityName = await codeTableDal.getCodeByName(db.city,city); //cityCode
+        //     var cityName = await cityDal.getCodeByName(city);
+        //     console.log(cityName);
+        //     if (!cityName)
+        //         return res.status(400).json({ message: 'Invalid project data received' });
+        //     city = cityName.toJSON().idCity;
+        // }
+        // //status =await codeTableDal.getCodeByName('Status',db.status);//statusCode
+        // if (status) {
+        //     status = await statusDal.getCodeByName(status);
+        //     if (!status) {
+        //         return res.status(400).json({ message: 'Invalid project data received ' });
+        //     }
+        //     status = status.toJSON().statusId;
+        //     //console.log(status,city);
+        // }
         const projectData = {
             address, city, status, initiatorId, apartmentBefore, apartmentAfter,
             requestYear, permitYear, populatingYear, description, tama38, pinuyBinuy, picturesArr
@@ -98,14 +97,15 @@ class ProjectController {
         }
         else
             return res.status(400).json({ message: 'Invalid project data received' });
-
+    }
+    catch(error) {next(error)}
     }
 
 
     //  לחשוב אך הפינוי בינוי והתמא יעבוד בעדכון  
     //http://localhost:3600/project/1
     updateProject = async (req, res) => {
-
+        try{
         var { address, city, status, initiatorId, apartmentBefore, apartmentAfter,
             requestYear, permitYear, populatingYear, description } = req.body;
         /*להוסיף
@@ -160,16 +160,20 @@ class ProjectController {
             return res.status(400).json({ message: 'Invalid project data received' });
 
         //res.send(project)
+}
+catch(error) {next(error)}
 
     }
 
     
-    deleteProject = async (req, res) => {
-     
+    deleteProject = async (req, res ,next) => {
+        try{
         const projectId = req.params.projectId;
         await projectDal.deleteProject(projectId);
         res.json(`project with ID ${projectId} deleted`);
-    
+    }
+    catch(error) {next(error)}
+
  
 }
 }

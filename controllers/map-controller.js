@@ -4,6 +4,7 @@ const util = require("@googlemaps/google-maps-services-js/dist/util");
 const client = new Client({});
 
 const geocode = async (address) => {
+
   console.log(address);
   const args = {
     params: {
@@ -16,7 +17,8 @@ const geocode = async (address) => {
   return coords;
 }
 
-const geocodeAddress = async (req, res) => {
+const geocodeAddress = async (req, res,next) => {
+try{
   const { address } = req.body;
   console.log(address,"aaddrreessss");
   if (!address) {
@@ -24,6 +26,9 @@ const geocodeAddress = async (req, res) => {
   }
   return res.status(200).json(await geocode(address));
 }
+catch(error) {next(error)}
+}
+
 
 
 const distancematrix = async (origin, dests) => {
@@ -40,7 +45,8 @@ const distancematrix = async (origin, dests) => {
   return durations;
 }
 
-const placeAutocomplete = async (req, res) => {
+const placeAutocomplete = async (req, res,next) => {
+
   const { text } = req.body
   if (!text) { return res.status(400).json({ message: 'Text to search is required' }) }
   const request = {
@@ -49,10 +55,14 @@ const placeAutocomplete = async (req, res) => {
       input: text,
       key: process.env.GOOGLE_MAPS_API_KEY
     }
-  }
+  } 
+   try{
+  
   var suggestions = await client.placeAutocomplete(request).then(res => { return res.data })
   suggestions = suggestions.predictions.map(e => e.description)
-  return res.status(200).json(suggestions);
+  return res.status(200).json(suggestions);}
+  catch(error) {next(error)}
+
 }
 const direction = async (req, res) => {
   const { source_lat, source_lng, dest_lat, dest_lng } = req.body;
